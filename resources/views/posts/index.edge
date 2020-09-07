@@ -1,0 +1,13 @@
+@layout('layouts/application')
+
+@section('main')
+	@each(post in posts)
+		<div class="link row mb-4">
+			<h2>
+				<a href="{{ route('PostsController.show', { params: { id: post.id }}) }}">{{ post.title }}</a>
+				<br>
+				<small class="author">Submitted {{ timeago(post.createdAt) }} by {{ post.user.name }}</small>
+			</h2>
+		</div>
+	@endeach
+@endsection

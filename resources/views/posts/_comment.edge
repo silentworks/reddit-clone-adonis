@@ -1,0 +1,8 @@
+@each(comment in post.comments)
+    <div class="comments_wrapper d-flex flex-wrap align-items-center mb-2 pt-3 pb-3 border-top border-light">
+        <div class="content flex-grow-1">
+            <p class="lead">{{ comment.body }}</p>
+            <p><small>Submitted {{ timeago(comment.createdAt) }} by {{ comment.user.name }}</small></p>
+        </div>
+    </div>
+@endeach

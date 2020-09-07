@@ -1,0 +1,34 @@
+@layout('layouts/application')
+
+@section('main')
+    @if(flashMessages.has('success'))
+        <p>{{ flashMessages.get('success') }}</p>
+    @endif
+
+    <h1>Edit Profile</h1>
+
+    <form action="{{ route('UsersController.update') }}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="name" class="form-control {{ flashMessages.get('errors.name') ? 'is-invalid' : '' }}" name="name" value="{{ flashMessages.get('name') || user.name }}">
+            @if(flashMessages.get('errors.name'))
+                <div id="name" class="invalid-feedback">
+                    {{ flashMessages.get('errors.name') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input aria-describedby="email" type="text" class="form-control {{ flashMessages.get('errors.email') ? 'is-invalid' : '' }}" name="email" value="{{ flashMessages.get('email') || user.email }}">
+            @if(flashMessages.get('errors.email'))
+                <div id="email" class="invalid-feedback">
+                    {{ flashMessages.get('errors.email') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm" type="submit">Submit</button>
+            <a href="/profile" class="btn btn-light btn-sm btn-link">Back</a>
+        </div>
+    </form>
+@endsection

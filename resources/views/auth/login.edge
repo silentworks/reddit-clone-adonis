@@ -1,0 +1,28 @@
+@layout('layouts/application')
+
+@section('main')
+    <h1>Sign In</h1>
+
+    @if(flashMessages.get('errors'))
+        <ul class="errors">
+            @each(error in flashMessages.get('errors'))
+                <li>{{ error }}</li>
+            @endeach
+        </ul>
+    @endif
+        
+    <form action="{{ route('AuthController.login') }}" method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" value="{{ flashMessages.get('email') || '' }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <button class="btn btn-success btn-sm" type="submit">Sign In</button>
+    </form>
+
+    <hr/>
+    <a href="{{ route('AuthController.register') }}">Don't have an account?</a>
+@endsection

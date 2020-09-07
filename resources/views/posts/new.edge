@@ -1,0 +1,34 @@
+@layout('layouts/application')
+
+@section('main')
+    @if(flashMessages.has('success'))
+        <p>{{ flashMessages.get('success') }}</p>
+    @endif
+
+    <h1>New Post</h1>
+
+    <form action="{{ route('PostsController.store') }}" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="title" class="form-control {{ flashMessages.get('errors.title') ? 'is-invalid' : '' }}" name="title" value="{{ flashMessages.get('title') || '' }}">
+            @if(flashMessages.get('errors.title'))
+                <div id="title" class="invalid-feedback">
+                    {{ flashMessages.get('errors.title') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="url">Url</label>
+            <input aria-describedby="url" type="text" class="form-control {{ flashMessages.get('errors.url') ? 'is-invalid' : '' }}" name="url" value="{{ flashMessages.get('url') || '' }}">
+            @if(flashMessages.get('errors.url'))
+                <div id="url" class="invalid-feedback">
+                    {{ flashMessages.get('errors.url') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm" type="submit">Submit</button>
+            <a href="/" class="btn btn-light btn-sm btn-link">Back</a>
+        </div>
+    </form>
+@endsection

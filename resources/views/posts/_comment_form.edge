@@ -1,0 +1,15 @@
+<form action="{{ route('CommentsController.store') }}" method="post">
+    <div class="form-group">
+        <label for="body">body</label>
+        <textarea name="body" class="form-control {{ flashMessages.get('errors.body') ? 'is-invalid' : '' }}">{{ flashMessages.get('body') || '' }}</textarea>
+        @if(flashMessages.get('errors.body'))
+            <div id="body" class="invalid-feedback">
+                {{ flashMessages.get('errors.body') }}
+            </div>
+        @endif
+    </div>
+    <div class="form-group">
+        <input type="hidden" name="postId" value="{{ post.id }}">
+        <button class="btn btn-secondary btn-sm" type="submit">Add Comment</button>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Reddit Clone using Adonis</title>
+	<link rel="stylesheet" href="/main.bundle.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-dark bg-primary mb-3">
+        <div class="container">
+            <a href="/" class="navbar-brand">Raddit</a>
+            <ul class="navbar-nav mr-auto">
+				@include('layouts/_nav')
+			</ul>
+            <ul class="navbar-nav">
+				@include('layouts/_session')
+			</ul>
+        </div>
+
+    </nav>
+    <div class="container">
+        <div class="main">
+            @section('main')
+            @endsection
+        </div>
+    </div>
+</body>
+</html>

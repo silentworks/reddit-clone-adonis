@@ -1,0 +1,43 @@
+@layout('layouts/application')
+
+@section('main')
+    <h1>Sign Up</h1>
+        
+    <form action="{{ route('AuthController.register') }}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="name" class="form-control" name="name" value="{{ flashMessages.get('name') || '' }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input aria-describedby="email" type="email" class="form-control" name="email" value="{{ flashMessages.get('email') || '' }}">
+            @if(flashMessages.get('errors.email'))
+                <div id="email" class="invalid-feedback">
+                    {{ flashMessages.get('errors.email') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input aria-describedby="password" type="password" class="form-control {{ flashMessages.get('errors.password') ? 'is-invalid' : '' }}" name="password">
+            @if(flashMessages.get('errors.password'))
+                <div id="password" class="invalid-feedback">
+                    {{ flashMessages.get('errors.password') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="password_confirmation">Confirm Password</label>
+            <input aria-describedby="password_confirmation" type="password" class="form-control {{ flashMessages.get('errors.password_confirmation') ? 'is-invalid' : '' }}" name="password_confirmation">
+            @if(flashMessages.get('errors.password_confirmation'))
+                <div id="password_confirmation" class="invalid-feedback">
+                    {{ flashMessages.get('errors.password_confirmation') }}
+                </div>
+            @endif
+        </div>
+        <button class="btn btn-success btn-sm" type="submit">Register</button>
+    </form>
+
+    <hr/>
+    <a href="{{ route('AuthController.login') }}">Already have an account?</a>
+@endsection

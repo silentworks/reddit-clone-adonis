@@ -1,0 +1,21 @@
+@layout('layouts/application')
+
+@section('main')
+    <h1>Profile</h1>
+    <p>{{ user.name }}</p>
+    <p>{{ user.email }}</p>
+    <a href="{{ route('UsersController.edit') }}" class="btn btn-success sm">edit</a>
+    <hr>
+    <h3 class="comments_title border-bottom">
+        {{ user.posts.length }} Posts
+    </h3>
+    @each(post in user.posts)
+		<div class="link mb-4 border-bottom">
+			<h4>
+				<a href="{{ route('PostsController.show', { params: { id: post.id }}) }}">{{ post.title }}</a>
+				<br>
+				<small class="author">Submitted {{ timeago(post.createdAt) }}</small>
+			</h4>
+		</div>
+	@endeach
+@endsection

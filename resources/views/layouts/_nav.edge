@@ -1,0 +1,5 @@
+@if(auth.isLoggedIn)
+  <li class="nav-item {{ request.url() === '/posts/create' ? 'active' : '' }}">
+      <a href="/posts/create" class="nav-link">Submit</a>
+  </li>
+@endif

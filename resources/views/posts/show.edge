@@ -1,0 +1,35 @@
+@layout('layouts/application')
+
+@section('main')
+<div class="mb-3 pb-3 border-bottom">
+    <h2>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <br>
+        <small class="author">Submitted {{ timeago(post.createdAt) }} by {{ post.user.name }}</small>
+    </h2>
+</div>
+
+<div class="btn-group mb-4">
+    <a href="{{ post.url }}" class="btn btn-primary btn-sm">Visit website</a>
+    @if(auth.isLoggedIn)
+        <a href="{{ route('PostsController.edit', { params: { id: post.id } }) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
+        <form action="{{ route('PostsController.destroy', { params: { id: post.id } }) }}" method="delete">
+            <button class="btn btn-outline-secondary btn-sm">Delete</button>
+        </form>
+    @endif
+</div>
+
+
+<h3 class="comments_title">
+    {{ post.comments.length }} Comments
+</h3>
+  
+<div id="comments" class="mb-3">
+    @include('posts/_comment')
+</div>
+
+@if(auth.isLoggedIn)
+    @include('posts/_comment_form')
+@endif
+
+@endsection

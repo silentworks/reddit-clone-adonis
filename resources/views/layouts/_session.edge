@@ -1,0 +1,15 @@
+@if(auth.isLoggedIn)
+  <li class="nav-item {{ request.url().includes('/profile') ? 'active' : '' }}">
+    <a href="/profile" class="nav-link">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a href="/signout" class="nav-link">Sign Out</a>
+  </li>
+@else  
+  <li class="nav-item {{ request.url() === route('AuthController.login') ? 'active' : '' }}">
+      <a href="{{ route('AuthController.login') }}" class="nav-link">Sign In</a>
+  </li>
+  <li class="nav-item {{ request.url() === route('AuthController.register') ? 'active' : '' }}">
+      <a href="{{ route('AuthController.register') }}" class="nav-link">Sign Up</a>
+  </li>
+@endif
