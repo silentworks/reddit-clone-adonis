@@ -2,23 +2,25 @@
 
 @section('main')
     <h1>Sign In</h1>
-
-    @if(flashMessages.get('errors'))
-        <ul class="errors">
-            @each(error in flashMessages.get('errors'))
-                <li>{{ error }}</li>
-            @endeach
-        </ul>
-    @endif
         
     <form action="{{ route('AuthController.login') }}" method="post">
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" value="{{ flashMessages.get('email') || '' }}">
+            <input type="email" class="form-control {{ flashMessages.get('errors.email') ? 'is-invalid' : '' }}" name="email" value="{{ flashMessages.get('email') || '' }}">
+            @if(flashMessages.get('errors.email'))
+                <div id="email" class="invalid-feedback">
+                    {{ flashMessages.get('errors.email') }}
+                </div>
+            @endif
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control {{ flashMessages.get('errors.password') ? 'is-invalid' : '' }}" name="password">
+            @if(flashMessages.get('errors.password'))
+                <div id="password" class="invalid-feedback">
+                    {{ flashMessages.get('errors.password') }}
+                </div>
+            @endif
         </div>
         <button class="btn btn-success btn-sm" type="submit">Sign In</button>
     </form>

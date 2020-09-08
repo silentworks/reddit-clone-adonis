@@ -3,7 +3,7 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 
 export default class AuthController {
-    public async signin({ auth, request, response }: HttpContextContract) {
+    public async login({ auth, request, response }: HttpContextContract) {
         const email = request.input('email')
         const password = request.input('password')
         await auth.attempt(email, password)
@@ -11,7 +11,7 @@ export default class AuthController {
         response.redirect('/')
     }
 
-    public async signup({ request, auth, response }: HttpContextContract) {
+    public async register({ request, auth, response }: HttpContextContract) {
         const validationSchema = schema.create({
             name: schema.string.optional({ trim: true }),
             email: schema.string({ trim: true }, [

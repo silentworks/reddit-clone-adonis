@@ -13,8 +13,8 @@
     <a href="{{ post.url }}" class="btn btn-primary btn-sm">Visit website</a>
     @if(auth.isLoggedIn)
         <a href="{{ route('PostsController.edit', { params: { id: post.id } }) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
-        <form action="{{ route('PostsController.destroy', { params: { id: post.id } }) }}" method="delete">
-            <button class="btn btn-outline-secondary btn-sm">Delete</button>
+        <form action="{{ route('PostsController.destroy', { params: { id: post.id }, qs: { _method: 'delete'} }) }}" method="post">
+            <button type="submit" class="btn btn-outline-secondary btn-sm">Delete</button>
         </form>
     @endif
 </div>

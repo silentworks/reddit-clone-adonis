@@ -1,5 +1,32 @@
 @layout('layouts/application')
 
 @section('main')
+    @include('shared/_success_flash')
+    
+    <h1>Edit Post</h1>
 
+    <form action="{{ route('PostsController.update', { params: { id: post.id }, qs: { _method: 'put'}}) }}" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="title" class="form-control {{ flashMessages.get('errors.title') ? 'is-invalid' : '' }}" name="title" value="{{ flashMessages.get('title') || post.title }}">
+            @if(flashMessages.get('errors.title'))
+                <div id="title" class="invalid-feedback">
+                    {{ flashMessages.get('errors.title') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="url">Url</label>
+            <input aria-describedby="url" type="text" class="form-control {{ flashMessages.get('errors.url') ? 'is-invalid' : '' }}" name="url" value="{{ flashMessages.get('url') || post.url }}">
+            @if(flashMessages.get('errors.url'))
+                <div id="url" class="invalid-feedback">
+                    {{ flashMessages.get('errors.url') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm" type="submit">Submit</button>
+            <a href="{{ route('PostsController.show', { params: { id: post.id }}) }}" class="btn btn-light btn-sm btn-link">Back</a>
+        </div>
+    </form>
 @endsection

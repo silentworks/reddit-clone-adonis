@@ -1,10 +1,8 @@
 @layout('layouts/application')
 
 @section('main')
-    @if(flashMessages.has('success'))
-        <p>{{ flashMessages.get('success') }}</p>
-    @endif
-
+    @include('shared/_success_flash')
+    
     <h1>Edit Profile</h1>
 
     <form action="{{ route('UsersController.update') }}" method="post">
